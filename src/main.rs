@@ -8,13 +8,15 @@ use rand::Rng;
 
 mod utils;
 
-// const M: u64 = 1000000;
-// const N: u64 = 64;
-// const K: u64 = 1024;
+const M: u64 = 1000000;
+const N: u64 = 64;
+const K: u64 = 1024;
+const REFERENCE_SPEED: &str = "MLX (reference M2 Pro): 49.39 ms";
 
-const M: u64 = 64;
-const N: u64 = 1000000;
-const K: u64 = 32;
+// const M: u64 = 64;
+// const N: u64 = 1000000;
+// const K: u64 = 32;
+// const REFERENCE_SPEED: &str = "MLX (reference M2 Pro): 3.36 ms";
 
 const TRIALS: usize = 5;
 
@@ -29,8 +31,7 @@ fn main() {
         let b_buf = utils::new_buffer(&b, &device);
 
         println!("MatMul ({M} x {N}) x ({N} x {K})");
-        // println!("MLX (reference M2 Pro): 49.39 ms");
-        println!("MLX (reference M2 Pro): 3.36 ms");
+        println!("{REFERENCE_SPEED}");
 
         println!(
             "Naive: {} ms",
