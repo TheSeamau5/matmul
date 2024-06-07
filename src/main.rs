@@ -8,9 +8,9 @@ use rand::Rng;
 
 mod utils;
 
-const M: u64 = 4096;
-const N: u64 = 4096;
-const K: u64 = 4096;
+const M: u64 = 1000000;
+const N: u64 = 64;
+const K: u64 = 1024;
 
 const TRIALS: usize = 5;
 
@@ -23,6 +23,9 @@ fn main() {
         let c = utils::cpu_matmul(&a, &b, M as usize, N as usize, K as usize);
         let a_buf = utils::new_buffer(&a, &device);
         let b_buf = utils::new_buffer(&b, &device);
+
+        println!("MatMul ({M} x {N}) x ({N} x {K})");
+        println!("MLX (reference M2 Pro): 49.39 ms");
 
         println!(
             "Naive: {} ms",
